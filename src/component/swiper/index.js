@@ -14,7 +14,8 @@ export default class Swipers extends Component {
     const {images} = this.props
     return (
       <view>
-        {images.length ? <Swiper
+        {images.length ? 
+        <Swiper
           className='swiper-wrap'
           indicatorColor='#999'
           indicatorActiveColor='#333'
@@ -33,7 +34,6 @@ export default class Swipers extends Component {
           }
         </Swiper> : <BoxLoading className='swiper-wrap' />}
       </view>
-      
     )
   }
 }
@@ -47,8 +47,3 @@ Swipers.defaultProps = {
   images: [],
   onClickFn: () => {}
 }
-// {
-//   type: 'navigate'，
-//   url: imagePath,
-//   path: navigateUrl
-// }

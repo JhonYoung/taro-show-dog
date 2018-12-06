@@ -1,6 +1,6 @@
 {
 	"miniprogramRoot": "dist/",
-	"projectname": "taro-some-component",
+	"projectname": "taro-show-dog",
 	"description": "a test app",
 	"appid": "wx3ab77a22406a089d",
 	"setting": {

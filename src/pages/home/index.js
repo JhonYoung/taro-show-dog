@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Button } from '@tarojs/components'
-import swiper from '../../component/swiper'
+import Swipers from '../../component/swiper/index'
 
 import './index.styl'
 
@@ -55,7 +55,7 @@ export default class Index extends Component {
     ]
     return (
       <View className='index'>
-        <swiper images={images} onClickFn={this.clickBanner} />
+        <Swipers images={images} onClickFn={this.clickBanner} />
         <Text>Hello boy!</Text>
         <Button onClick={this.goTo.bind(this, 'home')}>
           go to home
