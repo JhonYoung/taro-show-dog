@@ -1,14 +1,18 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Button } from '@tarojs/components'
+import { View, ScrollView, Image } from '@tarojs/components'
 import Swipers from '../../component/swiper/index'
-
-import './index.styl'
+import SearchBar from '../../component/searchBar/index'
+import BoxLoading from '../../component/boxLoading/index'
+import './index.scss'
+import {list1, list2} from './data.js'
 
 export default class Index extends Component {
   constructor () {
     // default
     super()
-    this.state = {}
+    this.state = {
+      lists: []
+    }
   }
 
   config = {
@@ -17,7 +21,12 @@ export default class Index extends Component {
 
   componentWillMount () { }
 
-  componentDidMount () { }
+  componentDidMount () {
+    this.setState({
+      lists: list1,
+      loading: false
+    })
+   }
 
   componentWillUnmount () { }
 
@@ -34,7 +43,20 @@ export default class Index extends Component {
   clickBanner (item, e) {
     console.log(item)
     console.log(e)
-    
+  }
+
+  searchClick (value) {
+    console.log('searchClick===>', value)
+  }
+
+  getList () {
+    this.setState({loading: true})
+    if (this.state.lists.length > 10 || this.state.loading) {
+      return;
+    }
+    setTimeout(() => {
+      this.setState({lists: this.state.lists.concat(list2), loading: false})
+    }, 2000)
   }
 
   render () {
@@ -54,13 +76,32 @@ export default class Index extends Component {
       }
     ]
     return (
-      <View className='index'>
+      <ScrollView 
+        className='home-list'
+        scrollY
+        lowerThreshold='50'
+        enableBackToTop
+        onScrollToLower={this.getList}
+      >
         <Swipers images={images} onClickFn={this.clickBanner} />
-        <Text>Hello boy!</Text>
-        <Button onClick={this.goTo.bind(this, 'home')}>
-          go to home
-        </Button>
-      </View>
+        <View className='search-bar-wrap'><SearchBar onConfirm={this.searchClick}  /></View>
+        {
+          this.state.lists.map((doc, index) => {
+            return (
+              <View key={index} className={`item item-${index%2}`} >
+                <View className='item-content'>
+                  <View>{doc.title}</View>
+                  <View>{doc.desc}</View>
+                </View>
+                <View className='item-img-wrap'>
+                  <Image src={doc.img} className='img' mode='aspectFill' />
+                </View>
+              </View>
+            )
+          })
+        }
+        {this.state.loading ? <View className='loading'><BoxLoading /> </View>: null}
+      </ScrollView>
     )
   }
 }
