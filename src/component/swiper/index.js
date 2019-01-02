@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { Swiper, SwiperItem, Image } from '@tarojs/components'
 import PropTypes from 'prop-types';
-import './index.styl'
+import './index.scss'
 import BoxLoading from '../../component/boxLoading/index'
 
 export default class Swipers extends Component {
@@ -22,12 +22,12 @@ export default class Swipers extends Component {
           circular
           indicatorDots
           autoplay
-          >
+        >
           {
             images.map(item => {
               return (
                 <SwiperItem onClick={this.goTo.bind(this, item)} key={item.path}>
-                  <Image src={item.url} style='width: 375px; height: 150px;' mode='aspectFill' />
+                  <Image src={item.url} className='img' mode='aspectFill' />
                 </SwiperItem>
               )
             })

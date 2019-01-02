@@ -1,18 +1,13 @@
 import Taro, { Component } from '@tarojs/taro'
 import Index from './pages/index'
-import './app.styl'
-
-// 如果需要在 h5 环境中开启 React Devtools
-// 取消以下注释：
-// if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
-//   require('nerv-devtools')
-// }
+import './app.scss'
+import { Users } from './lib/db';
 
 class App extends Component {
-
   config = {
     pages: [
       'pages/home/index',
+      'pages/register/index'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -22,7 +17,15 @@ class App extends Component {
     }
   }
 
-  componentDidMount () {}
+  componentDidMount () {
+    wx.cloud.init({
+      traceUser: true,
+      env: 'dev-showdog',
+    });
+    // const usersDb = wx.cloud.database().collection('users');
+    // const res = usersDb.where({openid: '123'}).get();
+    this.getCurrentUser();
+  }
 
   componentDidShow () {}
 
@@ -30,6 +33,14 @@ class App extends Component {
 
   componentDidCatchError () {}
 
+  getCurrentUser () {
+    console.log(Users);
+    Users.where({
+      openid: '123'
+    }).get().then(res => {
+      console.log(res);
+    })
+  }
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
   render () {
