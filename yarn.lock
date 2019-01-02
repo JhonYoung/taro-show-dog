@@ -151,12 +151,12 @@
     lodash "^4.17.10"
     prop-types "^15.6.1"
 
-"@tarojs/taro-weapp@^1.2.0-beta.7":
-  version "1.2.0-beta.7"
-  resolved "https://registry.yarnpkg.com/@tarojs/taro-weapp/-/taro-weapp-1.2.0-beta.7.tgz#3bb5d8c0a1fa641e811c98b6c7a70f1655ca283d"
+"@tarojs/taro-weapp@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@tarojs/taro-weapp/-/taro-weapp-1.2.1.tgz#44a79b929fb0367bc3b24bdcd379c12e9589be54"
   dependencies:
-    "@tarojs/taro" "1.2.0-beta.7"
-    "@tarojs/utils" "1.2.0-beta.7"
+    "@tarojs/taro" "1.2.1"
+    "@tarojs/utils" "1.2.1"
     lodash "^4.17.10"
     prop-types "^15.6.1"
 
@@ -164,9 +164,17 @@
   version "1.2.0-beta.7"
   resolved "https://registry.yarnpkg.com/@tarojs/taro/-/taro-1.2.0-beta.7.tgz#458ce23c62cd71d834b93072878672fcffa9877d"
 
+"@tarojs/taro@1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@tarojs/taro/-/taro-1.2.1.tgz#92f01071bfaf406e068cd5f714b0796fcd334a67"
+
 "@tarojs/utils@1.2.0-beta.7":
   version "1.2.0-beta.7"
   resolved "https://registry.yarnpkg.com/@tarojs/utils/-/utils-1.2.0-beta.7.tgz#b22cdf905e98d70236f96f3f4feb08457c81f73d"
+
+"@tarojs/utils@1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@tarojs/utils/-/utils-1.2.1.tgz#65893d5ee11f65f961e562752f4000d7ba527052"
 
 "@tarojs/webpack-runner@^1.2.0-beta.7":
   version "1.2.0-beta.7"
@@ -3749,6 +3757,10 @@ lodash.keys@^3.0.0:
     lodash.isarguments "^3.0.0"
     lodash.isarray "^3.0.0"
 
+lodash.merge@^4.6.1:
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.1.tgz#adc25d9cb99b9391c59624f379fbba60d7111d54"
+
 lodash.mergewith@^4.6.0:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/lodash.mergewith/-/lodash.mergewith-4.6.1.tgz#639057e726c3afbdb3e7d42741caa8d6e4335927"
@@ -5811,6 +5823,14 @@ tar@^4:
     safe-buffer "^5.1.2"
     yallist "^3.0.2"
 
+tcb-admin-node@1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/tcb-admin-node/-/tcb-admin-node-1.4.1.tgz#c6a92369768dbe5433279784ff29c329a2e9c1f3"
+  dependencies:
+    is-regex "^1.0.4"
+    lodash.merge "^4.6.1"
+    request "^2.87.0"
+
 terser-webpack-plugin@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/terser-webpack-plugin/-/terser-webpack-plugin-1.1.0.tgz#cf7c25a1eee25bf121f4a587bb9e004e3f80e528"
@@ -5922,7 +5942,7 @@ trim-right@^1.0.1:
   dependencies:
     glob "^7.1.2"
 
-tslib@^1.9.0:
+tslib@^1.9.0, tslib@^1.9.3:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
 
@@ -6313,6 +6333,13 @@ write@^0.2.1:
   resolved "https://registry.yarnpkg.com/write/-/write-0.2.1.tgz#5fc03828e264cea3fe91455476f7a3c566cb0757"
   dependencies:
     mkdirp "^0.5.1"
+
+wx-server-sdk@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/wx-server-sdk/-/wx-server-sdk-0.1.2.tgz#46f3c095bdb251151162fd6a6edb04677cb1daa9"
+  dependencies:
+    tcb-admin-node "1.4.1"
+    tslib "^1.9.3"
 
 xregexp@4.0.0:
   version "4.0.0"

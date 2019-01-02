@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Input, Icon } from '@tarojs/components'
 import PropTypes from 'prop-types';
-import './index.styl'
+import './index.scss'
 
 export default class SearchBar extends Component {
   constructor () {

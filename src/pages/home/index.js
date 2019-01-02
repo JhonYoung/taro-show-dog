@@ -4,7 +4,9 @@ import Swipers from '../../component/swiper/index'
 import SearchBar from '../../component/searchBar/index'
 import BoxLoading from '../../component/boxLoading/index'
 import './index.scss'
-import {list1, list2} from './data.js'
+// import {list1, list2} from './data.js'
+const list1 = [];
+const list2 = [];
 
 export default class Index extends Component {
   constructor () {
@@ -22,6 +24,9 @@ export default class Index extends Component {
   componentWillMount () { }
 
   componentDidMount () {
+    Taro.navigateTo({
+      url: `/pages/register/index`
+    });
     this.setState({
       lists: list1,
       loading: false
