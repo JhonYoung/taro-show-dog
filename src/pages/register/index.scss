@@ -1,0 +1,78 @@
+.index {
+  margin: 50px 30px;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.logo image {
+  width: 120px;
+  height: 120px;
+}
+.form-wrap {
+  margin: 240px 40px 30px 40px;
+}
+
+.mobile-send {
+  position: relative;
+}
+
+.mobile-input, .verify-code  {
+  border: 1px solid #cccccc;
+  padding: 10px 100px 10px 30px;
+  height: 90px;
+  line-height: 90px;
+  border-radius: 45px;
+  box-sizing: border-box;
+  font-size: 28px;
+  margin-bottom: 40px;
+  color: #ffffff;
+}
+
+.sms-btn {
+  height: 90px;
+  position: absolute;
+  right: 30px;
+  top: 0px;
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+  color: #cccccc;
+}
+
+.register-btn {
+  height: 90px;
+  line-height: 90px;
+  border-radius: 45px;
+  text-align: center;
+  font-size: 34px;
+  font-weight: 500;
+  color: #eeeeee;
+  background: #27AE61;
+}
+
+.active {
+  color: #27AE61;
+}
+
+.total-bg, .grey-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.grey-bg {
+  z-index: 1;
+  background: #252E40;
+  opacity: 0.6;
+}
+
+.total-bg image {
+  width: 100%;
+  height: 100%;
+}

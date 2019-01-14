@@ -25,7 +25,8 @@ exports.main = async (event) => {
 
   // 验证参数
   const mobile = event.mobile;
-  if (!mobile || mobile.length !== 11 || mobile.slice(0, 1) !== '1') {
+  const regMobile = /^1[3, 5, 6, 7, 8, 9]\d{9}$/;
+  if (!regMobile.test(mobile)) {
     return {
       result: 213701,
       errmsg: '电话号码错误，请重新输入！'
