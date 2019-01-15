@@ -37,9 +37,8 @@ exports.main = async (event) => {
     message: 'OK',
     createdAt: _.gt(deadTime),
     resend: false,
-    content: verifyCode
+    content: parseInt(verifyCode, 10)
   }
-
   const verifyCodes = await SMS.where(verifyQuery).get();
   if (verifyCode !== '1126' && (!verifyCodes || !verifyCodes.data.length)) {
     return {
@@ -64,12 +63,14 @@ exports.main = async (event) => {
         gender,
         lastLoginAt: now
       }
-    })
-    console.log(userFinds.data)
+    });
+    // 更新后重新获取用户资料
+    const updatedUser = await Users.where({mobile}).get();
     return {
       result: 200,
       errmsg: 'OK',
-      data: userFinds.data[0]
+      extraMsg: '替换微信成功',
+      data: updatedUser.data[0]
     }
   }
 
@@ -89,5 +90,9 @@ exports.main = async (event) => {
 
   const userAddRes = await Users.add({data: newUser});
   newUser._id = userAddRes._id;
-  return newUser;
+  return {
+    result: 200,
+    errmsg: 'OK',
+    data: newUser
+  }
 }

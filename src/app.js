@@ -1,8 +1,11 @@
 import Taro, { Component } from '@tarojs/taro'
+import { Provider } from '@tarojs/redux'
+import configStore from './redux/store'
 import Index from './pages/index'
 import './app.scss'
 import { Users } from './lib/db';
 
+const store = configStore();
 class App extends Component {
   config = {
     pages: [
@@ -50,4 +53,8 @@ class App extends Component {
   }
 }
 
-Taro.render(<App />, document.getElementById('app'))
+Taro.render((
+  <Provider store={store}>
+    <App />
+  </Provider>
+), document.getElementById('app'))
