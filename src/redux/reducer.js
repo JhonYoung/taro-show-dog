@@ -1,12 +1,17 @@
 import { combineReducers } from 'redux';
 
 const SET_PROFILE = 'SET_PROFILE';
-const userInfo = (state = {}, action = {}) => {
+const initState = {
+  profileReady: false,
+  profile: null
+}
+const userInfo = (state = initState, action = {}) => {
   switch (action.type) {
     case SET_PROFILE:
       return {
         ...state,
-        profile: action.payload
+        profile: action.payload,
+        profileReady: true
       }
     default:
       return state;

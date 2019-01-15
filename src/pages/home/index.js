@@ -1,10 +1,11 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, ScrollView, Image, Button } from '@tarojs/components'
+import { View, ScrollView, Image, Button, Icon } from '@tarojs/components'
 import { connect } from '@tarojs/redux';
 
 import Swipers from '../../component/swiper/index'
 import SearchBar from '../../component/searchBar/index'
 import BoxLoading from '../../component/boxLoading/index'
+import PageLoading from '../../component/pageLoading/index'
 import './index.scss'
 // import {list1, list2} from './data.js'
 const list1 = [];
@@ -25,7 +26,6 @@ class Index extends Component {
   componentWillMount () { }
 
   componentDidMount () {
-    console.log(this.props.profile);
     this.setState({
       lists: list1,
       loading: false
@@ -49,9 +49,7 @@ class Index extends Component {
     console.log(e)
   }
 
-  searchClick (value) {
-    console.log('searchClick===>', value)
-  }
+  searchClick (value) {}
 
   getList () {
     this.setState({loading: true})
@@ -79,6 +77,10 @@ class Index extends Component {
         path: 'world'
       }
     ]
+    const {profileReady, profile} = this.props;
+    if (!profileReady ||  !profile) {
+      return (<PageLoading />)
+    }
     return (
       <ScrollView 
         className='home-list'
@@ -113,7 +115,8 @@ class Index extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    profile: state.userInfo.profile
+    profile: state.userInfo.profile,
+    profileReady: state.userInfo.profileReady
   }
 }
 
