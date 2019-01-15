@@ -1,11 +1,13 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Input, Image, Text } from '@tarojs/components'
+import { connect } from '@tarojs/redux';
+import { View, Input, Image, Text, Button } from '@tarojs/components'
+
 import tools from '../../lib/tools';
+import action from '../../redux/action';
 import './index.scss'
 // 计时器
 let timer;
-
-export default class Register extends Component {
+class Register extends Component {
   constructor () {
     super()
     this.state = {
@@ -113,11 +115,44 @@ export default class Register extends Component {
   }
 
   // 注册方法
-  register () {
+  register (data) {
+    const self = this;
+    const {avatarUrl, gender, nickName} = data.detail.userInfo;
     const {mobile, verifyCode} = this.state;
     if (!this.checkData({mobile, verifyCode})) {
       return;
     }
+
+    const params = {
+      avatarUrl,
+      gender,
+      nickName,
+      mobile,
+      verifyCode
+    }
+    Taro.showLoading();
+    wx.cloud.callFunction({
+      name: 'register',
+      data: params
+    }).then((res) => {
+      Taro.hideLoading();
+      if (res && res.result && res.result.errmsg === 'OK') {
+        self.props.dispatch(action.setProfile(res.result.data))
+        Taro.showToast({
+          title:  res.result.extraMsg || '注册成功',
+          icon: 'success'
+        })
+        Taro.navigateTo({
+          url: `/pages/home/index`
+        })
+      } else {
+        Taro.showToast({
+          title:  res.result.errmsg || '未知错误，请重试',
+          icon: 'none'
+        })
+      }
+      console.log(res);
+    })
   }
 
   // 前端验证
@@ -157,11 +192,21 @@ export default class Register extends Component {
             <Text onClick={this.sendSms} className={`sms-btn ${ sendBtn ? 'active' : ''}`}>{count ? `${count}后重新获取` : '发送短信'}</Text>
           </View>
           <Input type='number' placeholder='验证码' className='verify-code'  value={verifyCode} onInput={this.verifyCodeChange} maxLength={4} />
-          <View onClick={this.register} className='register-btn'>注册</View>
+          <Button open-type='getUserInfo' onGetUserInfo={this.register} className='register-btn'>注册</Button>
         </View>
         
       </View>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    pofile: state.pofile
+  }
+}
+
+export default connect(
+  mapStateToProps
+)(Register)
 

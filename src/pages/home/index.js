@@ -1,5 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, ScrollView, Image } from '@tarojs/components'
+import { View, ScrollView, Image, Button } from '@tarojs/components'
+import { connect } from '@tarojs/redux';
+
 import Swipers from '../../component/swiper/index'
 import SearchBar from '../../component/searchBar/index'
 import BoxLoading from '../../component/boxLoading/index'
@@ -7,8 +9,7 @@ import './index.scss'
 // import {list1, list2} from './data.js'
 const list1 = [];
 const list2 = [];
-
-export default class Index extends Component {
+class Index extends Component {
   constructor () {
     // default
     super()
@@ -24,9 +25,7 @@ export default class Index extends Component {
   componentWillMount () { }
 
   componentDidMount () {
-    Taro.navigateTo({
-      url: `/pages/register/index`
-    });
+    console.log(this.props.profile);
     this.setState({
       lists: list1,
       loading: false
@@ -39,9 +38,9 @@ export default class Index extends Component {
 
   componentDidHide () { }
 
-  goTo (path) {
+  goTo () {
     Taro.navigateTo({
-      url: `/pages/${path}/index`
+      url: `/pages/register/index`
     })
   }
 
@@ -106,8 +105,19 @@ export default class Index extends Component {
           })
         }
         {this.state.loading ? <View className='loading'><BoxLoading /> </View>: null}
+        <Button onClick={this.goTo}>go register </Button>
       </ScrollView>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    profile: state.userInfo.profile
+  }
+}
+
+export default connect(
+  mapStateToProps
+)(Index)
 
