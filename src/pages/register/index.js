@@ -24,18 +24,7 @@ class Register extends Component {
 
   componentWillMount () { }
 
-  componentDidMount () {
-    // wx.cloud.callFunction({
-    //   name: 'add',
-    //   data: {
-    //     a: 12,
-    //     b: 19
-    //   }
-    // }).then((res) => {
-    //   debugger;
-    //   console.log(res);
-    // })
-  }
+  componentDidMount () {}
 
   componentWillUnmount () { 
     timer && clearInterval(timer);
@@ -142,7 +131,7 @@ class Register extends Component {
           title:  res.result.extraMsg || '注册成功',
           icon: 'success'
         })
-        Taro.navigateTo({
+        Taro.redirectTo({
           url: `/pages/home/index`
         })
       } else {
@@ -151,7 +140,6 @@ class Register extends Component {
           icon: 'none'
         })
       }
-      console.log(res);
     })
   }
 
@@ -202,7 +190,7 @@ class Register extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    pofile: state.pofile
+    pofile: state.userInfo.pofile,
   }
 }
 

@@ -1,0 +1,48 @@
+.loading{
+  font-size: 0;
+  width: 200px;
+  height: 200px;
+  margin: 300px auto;
+  position: relative;
+  text-align: center;
+  @for $i from 1 through 7 {
+    .circle:nth-child(#{$i}) {
+      animation-delay:#{$i*.3}s;
+    }
+  }
+}
+.circle{
+  opacity: 0;
+  position: relative;
+  display: inline-block;
+  height: 200px;
+  animation: rotate 3s infinite;
+  &:after{
+    display: inline-block;
+    position: absolute;
+    content: '';
+    width: 30px;
+    height: 30px;
+    background-color: #27AE61;
+    border-radius:50%;
+  }
+}
+
+@keyframes rotate{
+  0%{
+    transform:rotate(0deg);
+    opacity: .4;
+  }
+  50%{
+    transform:rotate(300deg);
+    opacity: 0;
+  }
+  90%{
+    transform:rotate(340deg);
+    opacity: 0;
+  }
+  100%{
+    transform:rotate(360deg);
+    opacity: 0;
+  }
+}
