@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, ScrollView, Image, Button, Icon } from '@tarojs/components'
+import { View, ScrollView, Image, Button, Text } from '@tarojs/components'
 import { connect } from '@tarojs/redux';
 
 import Swipers from '../../component/swiper/index'
@@ -8,7 +8,40 @@ import BoxLoading from '../../component/boxLoading/index'
 import PageLoading from '../../component/pageLoading/index'
 import './index.scss'
 // import {list1, list2} from './data.js'
-const list1 = [];
+const list1 = [
+  {
+    id: 1,
+    name: '张三',
+    feature: '我是特点，我是特点，我是特点我是特点，我是特点，我是特点我是特点，我是特点，我是特点，',
+    mainUrl: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3414640088,2128364203&fm=58&bpow=1920&bpoh=1200',
+    tags: ['good', 'beautiful', 'wanted'],
+    shape: '1'
+  },
+  {
+    id: 2,
+    name: '哈士奇',
+    feature: '我是特点，我是特点，我是特点我是特点，我是特点，我是特点我是特点，我是特点，我是特点，',
+    mainUrl: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3414640088,2128364203&fm=58&bpow=1920&bpoh=1200',
+    tags: ['good', 'beautiful', 'wanted'],
+    shape: '2'
+  },
+  {
+    id: 3,
+    name: '泰迪',
+    feature: '我是特点，我是特点，我是特点我是特点，我是特点，我是特点我是特点，我是特点，我是特点，',
+    mainUrl: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3414640088,2128364203&fm=58&bpow=1920&bpoh=1200',
+    tags: ['good', 'beautiful'],
+    shape: '2'
+  },
+  {
+    id: 4,
+    name: '萨摩耶',
+    feature: '我是特点，我是特点，我是特点我是特点，我是特点，我是特点我是特点，我是特点，我是特点，',
+    mainUrl: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3414640088,2128364203&fm=58&bpow=1920&bpoh=1200',
+    tags: ['good'],
+    shape: '2'
+  }
+];
 const list2 = [];
 class Index extends Component {
   constructor () {
@@ -49,7 +82,13 @@ class Index extends Component {
     console.log(e)
   }
 
-  searchClick (value) {}
+  searchClick () {}
+
+  goToDetail (e) {
+    Taro.navigateTo({
+      url: `/pages/detail/index?id=${JSON.parse(e.currentTarget.dataset.info).id}`
+    })
+  }
 
   getList () {
     this.setState({loading: true})
@@ -94,13 +133,22 @@ class Index extends Component {
         {
           this.state.lists.map((doc, index) => {
             return (
-              <View key={index} className={`item item-${index%2}`} >
-                <View className='item-content'>
-                  <View>{doc.title}</View>
-                  <View>{doc.desc}</View>
+              <View key={doc.id} className={`item item-${index%4}`} onClick={this.goToDetail} data-info={JSON.stringify(doc)}>
+                <View className='item-img'>
+                  <Image src={doc.mainUrl} className='img' mode='aspectFill' />
                 </View>
-                <View className='item-img-wrap'>
-                  <Image src={doc.img} className='img' mode='aspectFill' />
+
+                <View className='item-content'>
+                <View className='line'></View>
+                  <View className='name'>{doc.name} <Text>{doc.shape}</Text></View>
+                  <View className='feature'>{doc.feature}</View>
+                  <View className='tips'>
+                    {
+                      doc.tags.map((tip) => {
+                        return (<View key={tip}>{tip}</View>);
+                      })
+                    }
+                  </View>
                 </View>
               </View>
             )
