@@ -11,12 +11,13 @@ export default class Swipers extends Component {
     item.type === 'navigate' ? Taro.navigateTo({ url: `/pages/${item.path}/index`}) : this.props.onClickFn(item, e)
   }
   render () {
-    const {images} = this.props
+    const {images, className} = this.props;
+    debugger;
     return (
       <view>
         {images.length ? 
         <Swiper
-          className='swiper-wrap'
+          className={`swiper-wrap ${className}`}
           indicatorColor='#999'
           indicatorActiveColor='#333'
           circular
@@ -40,7 +41,8 @@ export default class Swipers extends Component {
 
 Swipers.propTypes = {
   images: PropTypes.array,
-  onClickFn: PropTypes.func
+  onClickFn: PropTypes.func,
+  className:  PropTypes.string
 }
 
 Swipers.defaultProps = {
