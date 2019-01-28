@@ -5,6 +5,14 @@ function setProfile(profile) {
   }
 }
 
+function setDict(dict) {
+  return {
+    type: 'SET_DICT',
+    payload: dict
+  }
+}
+
 export default {
-  setProfile
+  setProfile,
+  setDict
 }

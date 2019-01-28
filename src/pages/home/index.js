@@ -128,7 +128,7 @@ class Index extends Component {
         enableBackToTop
         onScrollToLower={this.getList}
       >
-        <Swipers images={images} onClickFn={this.clickBanner} />
+        <Swipers images={images} onClickFn={this.clickBanner} className='small'/>
         <View className='search-bar-wrap'><SearchBar onConfirm={this.searchClick}  /></View>
         {
           this.state.lists.map((doc, index) => {
