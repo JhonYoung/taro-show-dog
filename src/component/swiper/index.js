@@ -25,10 +25,10 @@ export default class Swipers extends Component {
           autoplay
         >
           {
-            images.map(item => {
+            images.map((item, index) => {
               return (
-                <SwiperItem onClick={this.goTo.bind(this, item)} key={item.path}>
-                  <Image src={item.url} className='img' mode='aspectFill' />
+                <SwiperItem onClick={this.goTo.bind(this, item)} key={index}>
+                  <Image src={item.url || item} className='img' mode='aspectFill' />
                 </SwiperItem>
               )
             })

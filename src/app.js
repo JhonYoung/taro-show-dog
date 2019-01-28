@@ -3,9 +3,12 @@ import { Provider } from '@tarojs/redux'
 import configStore from './redux/store'
 import Index from './pages/index'
 import action from './redux/action';
+// import {Dictionary} from './lib/db'
 import './app.scss'
 
-wx.cloud.init();
+wx.cloud.init({
+  env: 'dev-showdog'
+});
 const store = configStore();
 class App extends Component {
   config = {
@@ -33,8 +36,12 @@ class App extends Component {
           url: `/pages/register/index`
         })
       }
-      
     })
+
+    // Dictionary.get().then( res => {
+    //   debugger;
+    // })
+
   }
 
   componentDidShow () {}
